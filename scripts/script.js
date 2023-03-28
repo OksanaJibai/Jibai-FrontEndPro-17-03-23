@@ -5,25 +5,14 @@
 let whatToDo = prompt('add, sub, mult, div - choose one of them');
 const a = prompt('first number');
 const b = prompt('second number');
-if (whatToDo ==='add' &&
-    typeof(a) === 'number' &&
-    typeof(b) === 'number'){
-    alert (`${Number(a)} + ${Number(b)} = ${Number(a) + Number(b)}`);
-} else if(whatToDo ==='sub'&&
-    typeof(a) === 'number' &&
-    typeof(b) === 'number'){
-    alert(`${a} - ${b} = ${a - b}`);
-} else if(whatToDo ==='mult'&&
-    typeof(a) === 'number' &&
-    typeof(b) === 'number'){
-    alert(`${a} * ${b} = ${a * b}`);
-} else if(whatToDo ==='div' &&
-    typeof(a) === 'number' &&
-    typeof(b) === 'number'){
-    alert(`${a} / ${b} = ${a / b}`);
-} else if (typeof(a) !== 'number' ||
-    typeof(b) !== 'number'){
-    alert('a variable has not valid type');
-} else if (whatToDo === ' ') {
-    alert('');
+if (whatToDo ==='add'){
+    alert (`${parseInt(a)} + ${parseInt(b)} = ${parseInt(a) + parseInt(b)}`);
+} else if(whatToDo ==='sub'){
+    alert(`${parseInt(a)} - ${parseInt(b)} = ${parseInt(a) - parseInt(b)}`);
+} else if(whatToDo ==='mult'){
+    alert(`${parseInt(a)} * ${parseInt(b)} = ${parseInt(a) * parseInt(b)}`);
+} else if(whatToDo ==='div'){
+    alert(`${parseInt(a)} / ${parseInt(b)} = ${parseInt(a) / parseInt(b)}`);
+} else if (!whatToDo || whatToDo === ' ' || whatToDo === null ) {
+    alert('Ups, something was wrong');
 }
