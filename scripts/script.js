@@ -2,17 +2,42 @@
 
 //hw_3-2 'Калькулятор'
 
-let whatToDo = prompt('add, sub, mult, div - choose one of them');
-const a = prompt('first number');
-const b = prompt('second number');
-if (whatToDo ==='add'){
-    alert (`${parseInt(a)} + ${parseInt(b)} = ${parseInt(a) + parseInt(b)}`);
+const a = Number(prompt('Write first number'));
+const b = Number(prompt('Write second number'));
+const whatToDo = prompt('Choose: add, sub, mult, div');
+
+if (whatToDo === '' || whatToDo === null) {
+    alert('Ви не ввели ніодну із дій');
+
+} else if (whatToDo ==='add'){
+    alert (`${a} + ${b} = ${a + b}`);
+
 } else if(whatToDo ==='sub'){
-    alert(`${parseInt(a)} - ${parseInt(b)} = ${parseInt(a) - parseInt(b)}`);
+    alert(`${a} - ${b} = ${a - b}`);
+
 } else if(whatToDo ==='mult'){
-    alert(`${parseInt(a)} * ${parseInt(b)} = ${parseInt(a) * parseInt(b)}`);
+    alert(`${a} * ${b} = ${a * b}`);
+
+}else if(whatToDo ==='div' && b == 0){
+    alert('Ділення на нуль заборонено!');
+
 } else if(whatToDo ==='div'){
-    alert(`${parseInt(a)} / ${parseInt(b)} = ${parseInt(a) / parseInt(b)}`);
-} else if (!whatToDo || whatToDo === ' ' || whatToDo === null ) {
-    alert('Ups, something was wrong');
+    alert(`${a} / ${b} = ${a / b}`);
+
+}else if (typeof a !== 'number' || typeof b !== 'number') {
+    alert('Ви вказали невірне значення');
+
+}else {
+    alert('Щось пішло не так');
 }
+
+
+
+
+
+
+
+
+
+
+
