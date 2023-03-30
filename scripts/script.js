@@ -29,25 +29,25 @@ if(!yearOfBirth || isNaN(yearOfBirth)) {
             break;
         case city:
             country = String(city);
-        default:
-            let typeSport = prompt('What type of sport is your favorite?');
-            let result = null;
-            switch (typeSport){
-                case null:
-                case '':
-                    alert('It is a pity that you did not want to enter your favorite type of sport');
-                    break;
-                case 'football':
-                    result = 'Cool! Do you want to become like Luka Modric';
-                    break;
-                case 'basketball':
-                    result = 'Cool! Do you want to become like Michael Jordan';
-                    break;
-                case 'free diving' :
-                    result = 'Cool! Do you want to become like Natalia Molchanova';
-                    break;
-            }
-            alert(` Your age is ${age}. You live in ${country}. ${result}.`);
             break;
+    }
+    let typeSport = prompt('What type of sport is your favorite?');
+    let result = null;
+    switch (typeSport){
+        case null:
+        case '':
+            alert('It is a pity that you did not want to enter your favorite type of sport');
+            break;
+        case 'football':
+            result = 'Cool! Do you want to become like Luka Modric';
+            break;
+        case 'basketball':
+            result = 'Cool! Do you want to become like Michael Jordan';
+            break;
+        case 'free diving' :
+            result = 'Cool! Do you want to become like Natalia Molchanova';
+            break;
+        case typeSport:
+            alert(` Your age is ${age}. You live in ${country}. ${result}.`);
     }
 }
