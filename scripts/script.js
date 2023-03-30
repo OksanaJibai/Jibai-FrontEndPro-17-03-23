@@ -47,7 +47,6 @@ if(!yearOfBirth || isNaN(yearOfBirth)) {
         case 'free diving' :
             result = 'Cool! Do you want to become like Natalia Molchanova';
             break;
-        case typeSport:
-            alert(` Your age is ${age}. You live in ${country}. ${result}.`);
     }
+    alert(` Your age is ${age}. You live in ${country}. ${result}.`);
 }
