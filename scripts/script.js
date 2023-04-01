@@ -6,7 +6,7 @@ let yearOfBirth = prompt('What year of birth do you have?');
 
 if(!yearOfBirth || isNaN(yearOfBirth)) {
     alert('It is a pity that you did not want to enter yours year of birth');
-}else if (yearOfBirth <= 1900 || yearOfBirth >= 2023) {
+}else if (yearOfBirth < 1900 || yearOfBirth > 2023) {
     alert('The year of birth should be from 1900 to 2023');
 }else {
     const age = 2023 - Number(yearOfBirth);
