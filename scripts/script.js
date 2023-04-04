@@ -11,11 +11,40 @@ let sum = arrOne.reduce(function(acc, item,){
 console.log(arrOne.length, sum);
 
 //2
-let min = Math.min(...arr);
-console.log(min, arr.findIndex((item) => item === min));
+// let min = Math.min(...arr);
+
+let min = arr[0];
+arr.forEach(function (elem,index){
+    if(index > 0){
+        if(min > elem){
+            min = elem;
+        }
+    }
+})
+
+// let min = (a,b) =>{
+//     return a < b ? a : b;
+// }
+// console.log(arr.reduce(min)) але як знайти індекс?
+console.log(arr.reduce(min), arr.findIndex((item) => item === min));
 
 //3
-let max = Math.max(...arr);
+// let max = Math.max(...arr);
+
+let max = arr[0];
+arr.forEach(function (elem,index){
+    if(index > 0){
+        if(max < elem){
+            max = elem;
+        }
+    }
+})
+
+// let max = (a,b) => {
+//     return a > b? a:b;
+// }
+// console.log(arr.reduce(max)) але як знайти індекс?
+
 console.log(max, arr.findIndex((item) => item === max));
 
 //4
