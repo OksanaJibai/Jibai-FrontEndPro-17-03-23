@@ -58,16 +58,23 @@ let users = [
         "address": "314 Dunne Place, Bawcomville, Guam, 9053"
     }
 ]
-//1
-let allPhones = users.filter((item) => item.balance > '$2,000').map((value) => value.phone)
-console.log(allPhones);
+//1.1 з перевіркою в строці( залишила чисто як нагадування того, як круто в мене від початку вийшло,хоч і з ймовірною помилкою =) )
 
-// [
-// '+1 (840) 583-3207',
-//     '+1 (985) 593-3328',
-//     '+1 (995) 591-2478',
-//     '+1 (942) 565-3988'
-// ]
+let allPhones = users.filter((item) => item.balance > '$2,000').map((value) => value.phone)
+console.log(allPhones);  // [ '+1 (840) 583-3207', '+1 (985) 593-3328', '+1 (995) 591-2478', '+1 (942) 565-3988' ]
+
+//1.2 з перевіркою в числах (як має бути)
+ const array = users.reduce((total,item) => {
+     const balance = Number(item.balance.substring(1).replace(',', ''));
+     if(balance > 2000){
+         total.usersPhones.push(item.phone);
+     }
+     return total
+ },{
+     usersPhones: []
+ })
+console.log(array); // { usersPhones: ['+1 (840) 583-3207','+1 (985) 593-3328','+1 (995) 591-2478','+1 (942) 565-3988' ]}
+
 
 //2
 let allBalances = users.map((item) => item.balance).map((value) => value.slice(1))
