@@ -2,7 +2,7 @@
 
 //hw_6-15 'removeElement'
 
-const array = [1, 2, 3, 4, 5, 6, 7];
+let array = [1, 2, 3, 4, 5, 6, 7];
 function removeElement (arr, item){
     let index = arr.indexOf(item);
     return [
@@ -10,5 +10,7 @@ function removeElement (arr, item){
         ...arr.slice(index + 1)
     ];
 }
-removeElement(array, 5);
-console.log(removeElement(array,5)); // [ 1, 2, 3, 4, 6, 7 ]
+
+array = removeElement(array, 5);
+
+console.log(array); // [ 1, 2, 3, 4, 6, 7 ]
