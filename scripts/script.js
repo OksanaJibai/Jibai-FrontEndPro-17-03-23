@@ -19,19 +19,31 @@ const aveNumbers = function (arr){
 console.log(aveNumbers(array));
 
 //2
-function doMath(x, sign, y){
-    if (~sign.search(/[^+\-*/%^]/) || sign.length !== 1){
-        return 'Bad operation type';
-    }else if(isNaN(x) || isNaN(y) || !x || !y){
-        return 'Both of number have to be a number';
+
+function doMath(x, sign, y) {
+    switch(sign) {
+        case '+':
+            return x + y;
+        case '-':
+            return x - y;
+        case '*':
+            return x * y;
+        case '/':
+            return x / y;
+        case '%':
+            return x % y;
+        case '^':
+            return Math.pow(x, y);
+        default:
+            return 'Bad operation type';
     }
-    return (x + sign.replace('^', '**') + y);
 }
-let operand1 = prompt('Please enter first number');
-let operationType = prompt('Please enter operation type');
-let operand2 = prompt('Please enter second number');
-let result1 = doMath(operand1, operationType, operand2);
-alert(result1);
+
+let x = +prompt('Please enter first number');
+let sign = prompt('Please enter operation type (+, -, *, /, %, ^):');
+let y = +prompt('Please enter second number');
+
+alert(doMath(x, sign, y));
 
 //3
 function fillArray(num1, num2) {
@@ -50,7 +62,7 @@ let num1 = Number(prompt("Enter number of rows:"));
 let num2 = +(prompt("Enter number of columns:"));
 alert(fillArray(num1,num2))
 
-//4
+// //4
 function replaceItem(str, item) {
     let newStr = '';
     for (let i = 0; i < str.length; i++) {
