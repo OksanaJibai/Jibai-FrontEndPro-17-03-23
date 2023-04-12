@@ -12,7 +12,7 @@ if(!yearOfBirth || isNaN(yearOfBirth)) {
     const age = 2023 - Number(yearOfBirth);
     let city = prompt('What city do you live in?');
     let country = null;
-    switch (city){
+    switch (city.toLowerCase()){
         case null:
         case '':
             alert('It is a pity that you did not want to enter your city');
@@ -21,7 +21,6 @@ if(!yearOfBirth || isNaN(yearOfBirth)) {
             country = ' capital of Croatia';
             break;
         case 'Kiev':
-        case 'kiev':
             country = ' capital of Ukraine';
             break;
         case 'Lisbon':
@@ -33,7 +32,7 @@ if(!yearOfBirth || isNaN(yearOfBirth)) {
     }
     let typeSport = prompt('What type of sport is your favorite?');
     let result = null;
-    switch (typeSport){
+    switch (typeSport.toLowerCase()){
         case null:
         case '':
             alert('It is a pity that you did not want to enter your favorite type of sport');
