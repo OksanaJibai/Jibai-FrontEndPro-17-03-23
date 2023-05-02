@@ -10,3 +10,7 @@ body{
     width: 1000px;
     background-color: lightyellow;
 }
+.voting{
+    display: flex;
+    justify-content: center;
+}
