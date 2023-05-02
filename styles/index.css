@@ -1,0 +1,19 @@
+body{
+    margin: 0;
+    background: white;
+    color: #000;
+    font: 16px/20px Arial, sans-serif;
+}
+
+.wrap{
+    margin: 0 auto;
+    width: 1000px;
+    padding-top: 40px;
+
+}
+#myInput{
+    border-color: darkblue;
+    background-color: cornflowerblue;
+    padding: 10px 10px;
+    margin-bottom: 30px;
+}
