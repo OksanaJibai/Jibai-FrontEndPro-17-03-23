@@ -1,12 +1,6 @@
 body{
     font: 16px/20px Arial,sans-serif;
     margin: 0;
-    background: white;
+    background: lightyellow;
     color: black;
-}
-.wrap{
-    padding: 30px;
-    margin: 0 auto;
-    width: 1000px;
-    background-color: lightyellow;
 }
