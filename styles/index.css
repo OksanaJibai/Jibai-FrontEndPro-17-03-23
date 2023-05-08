@@ -4,9 +4,12 @@ body{
     background: white;
     color: black;
 }
-.wrap{
+#wrap{
     padding: 30px;
     margin: 0 auto;
     width: 1000px;
     background-color: lightyellow;
+}
+.row{
+    margin-bottom: 20px;
 }
