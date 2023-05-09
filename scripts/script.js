@@ -16,9 +16,9 @@ const htmlCode =`
             </div>
             <div class="row">
                 <legend>Your gender is</legend>
-                <input type="radio" name="gender" checked id="gender1" required >
+                <input type="radio" name="gender" value="Male" checked id="gender1" required >
                 <label for="gender1">Male</label>
-                <input type="radio" name="gender" id="gender2">
+                <input type="radio" name="gender" value="Female" id="gender2">
                 <label for="gender2">Female</label>
             </div>
             <div class="row">
@@ -41,7 +41,7 @@ const htmlCode =`
                 <label for="lang2">EN</label>
                 <input type="checkbox" name="language" id="lang3" value="Croatian">
                 <label for="lang3">HR</label>
-                <input type="checkbox" name="language" id="lang4" value="France">
+                <input type="checkbox" name="language" id="lang4" value="French">
                 <label for="lang4">FR</label>
             </div>
             <button type="submit">Save</button>
@@ -73,7 +73,7 @@ function handleFormSubmit (event){
         { label: "Стать:", value: gender },
         { label: "Місто:", value: city },
         { label: "Адреса:", value: address },
-        { label: "Мови, якими володієте:  ", value: languages.join(', ') },
+        { label: "Мови, якими володієте:", value: languages.join(', ') },
     ];
     data.forEach((item) => {
         const row = document.createElement('tr');
