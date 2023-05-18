@@ -17,8 +17,8 @@ const htmlCode = `
         <select id="city" required>
             <option value="">Виберіть місто</option>
             <option value="Київ">Київ</option>
-            <option value="Львів">Харків</option>
-            <option value="Одеса">Донецьк</option>
+            <option value="Харків">Харків</option>
+            <option value="Донецьк">Донецьк</option>
         </select><br>
         <label for="nova-poshta">Склад Нової пошти:</label>
         <input type="text" id="nova-poshta" required><br>
