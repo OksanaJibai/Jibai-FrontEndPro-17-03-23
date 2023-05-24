@@ -12,7 +12,7 @@ function getRandomNumber (){
 
         return randomNumber;
     }
-    return generateNumber();
+    return generateNumber;
 }
 
 const generateRandomNumber = getRandomNumber();
