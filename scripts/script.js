@@ -43,14 +43,14 @@ function counter(num = 0){
 const counter1 = counter();
 counter1.increase();
 
-// console.log(counter1.value());
-//console.log(counter1.getStatistic());
+console.log(counter1.value());
+console.log(counter1.getStatistic());
 
 const counter2 = counter(5);
 counter2.decrease();
 
-// console.log(counter2.value());
-//console.log(counter2.getStatistic());
+console.log(counter2.value());
+console.log(counter2.getStatistic());
 
 counter2.reset();
-//console.log(counter2.value());
+console.log(counter2.value());
