@@ -16,3 +16,7 @@ function getRandomNumber (){
 }
 
 const generateRandomNumber = getRandomNumber();
+
+// console.log(generateRandomNumber());
+// console.log(generateRandomNumber());
+// console.log(generateRandomNumber());
