@@ -4,7 +4,9 @@ body {
   background: white;
   color: black;
 }
-.wrap {
+#wrap {
+  display: flex;
+  justify-content: center;
   padding: 30px;
   margin: 0 auto;
   width: 1000px;
