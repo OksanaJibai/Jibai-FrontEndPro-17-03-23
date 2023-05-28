@@ -36,27 +36,6 @@
 // }
 
 //second variant
-
-// const form = document.getElementById('form');
-//
-// form.addEventListener('submit', handleFormSubmit);
-//
-// function handleFormSubmit(event){
-//     event.preventDefault();
-//
-//     const form = event.target;
-//
-//     const elements = form.querySelectorAll('input, select, textarea');
-//     const data = [];
-//
-//     elements.forEach(element =>{
-//         const label = element.label[0].textContent;
-//         const value = element.value;
-//         data.push({label, value});
-//     });
-//     console.log(data);
-// }
-
 const form = document.getElementById('form');
 
 form.addEventListener('submit', handleFormSubmit);
