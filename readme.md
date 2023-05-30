@@ -11,6 +11,3 @@ const insert = insertWordInto('hello world')
 const result = insert('Odesa') // -> 'hello Odesa world'
 const secondResult = insert('Odesa') // -> 'Odesa hello world'
 const thirdResult = insert('Odesa') // -> 'hello world Odesa'
-
-// optional
-const fourthResult = insert('Odesa') // -> 'Odesa hello world': лише н

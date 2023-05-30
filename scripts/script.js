@@ -1,5 +1,6 @@
 "use strict";
 
+
 function insertWordInto(str) {
     return function(newWord) {
         if (!newWord) {
@@ -18,7 +19,6 @@ function insertWordInto(str) {
         }
     }
 }
-
 const insert = insertWordInto('hello world')
 const result = insert('Odesa') // -> 'hello Odesa world'
 const secondResult = insert('Odesa') // -> 'Odesa hello world'
