@@ -1,12 +1,25 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   font: 16px/20px Arial, sans-serif;
   margin: 0;
   background: white;
   color: black;
 }
-.wrap {
-  padding: 30px;
-  margin: 0 auto;
-  width: 1000px;
-  background-color: lightyellow;
+
+.wrapper {
+  width: 400px;
+  margin: 40px auto 0 auto;
+  border: 1px solid rgba(0,0,0, .2);
+  padding: 20px;
+}
+
+button {
+  margin-top: 20px;
+}
+
+[type=checkbox] {
+  margin-top: 20px;
 }
