@@ -4,9 +4,19 @@ body {
   background: white;
   color: black;
 }
-.wrap {
-  padding: 30px;
-  margin: 0 auto;
-  width: 1000px;
-  background-color: lightyellow;
+.taskWrapper {
+  background-color: #ccc;
+  border-radius: 10px;
+  box-shadow: 0 0 14px 1px rgba(0, 0, 0, .2);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.taskHeading {
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.taskDescription {
+  font-size: 16px;
 }
