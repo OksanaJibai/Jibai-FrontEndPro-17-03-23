@@ -21,12 +21,19 @@ const Model = {
         const data = this.getData();
         const dataToSave = {...todoItem, id: this.currentId}
         data.push(dataToSave);
-        this.storage.setItem(this.dataKey, JSON.stringify(data))
-        const savedElement = this.getDataByID(this.currentId)
-        this.currentId += 1
-        return savedElement
+        this.storage.setItem(this.dataKey, JSON.stringify(data));
+        const savedElement = this.getDataByID(this.currentId);
+        this.currentId += 1;
+        return savedElement;
     },
 
+    deleteData(id){
+        const data = this.getData();
+        const index = data.findIndex(item => item.id === id);
+        const removeItem = data.splice(index, 1);
+        this.storage.setItem(this.dataKey, JSON.stringify(data));
+        return removeItem[0];
+    },
 
     init(storage = sessionStorage, storageKey) {
         if (typeof storageKey === 'string') this.dataKey = storageKey;
@@ -34,6 +41,6 @@ const Model = {
 
         const savedData = this.getData();
         if(!savedData.length) return;
-        this.currentId = savedData.at(-1).id + 1;
+        this.currentId = Number(savedData.at(-1).id) + 1;
     }
 }

@@ -8,7 +8,7 @@
 
         el.innerHTML = `<div class="taskWrapper vova-shaitan">
                           <div class="taskHeading"><b>${title}</b></div>
-                          <div class="taskDescription"><i>${description}</i></div>
+                          <div class="taskDescription"><p>${description}</p></div>
                           <button class="mt-3 remove-todo btn btn-danger btn-sm">
                             <span>Remove</span>
                           </button>

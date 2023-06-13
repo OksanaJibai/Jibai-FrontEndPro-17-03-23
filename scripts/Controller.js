@@ -5,8 +5,10 @@ const Controller = {
     todoItemsBlock: null,
 
     initListeners() {
-        this.form.addEventListener('submit', this.formHandler.bind(this))
-        window.addEventListener('DOMContentLoaded', this.prerenderTodos.bind(this))
+        this.form.addEventListener('submit', this.formHandler.bind(this));
+        this.todoItemsBlock.addEventListener('click', this.deleteTodo.bind(this));
+        window.addEventListener('DOMContentLoaded', this.prerenderTodos.bind(this));
+
     },
 
     formHandler(e) {
@@ -20,9 +22,9 @@ const Controller = {
             })
 
         const savedData = Model.postData(data);
+        e.target.reset();
         View.renderElement(savedData);
 
-        e.target.reset();
     },
 
     prerenderTodos() {
@@ -30,30 +32,33 @@ const Controller = {
         if(!data.length) return;
 
         data.forEach(item => {
-            View.renderElement(item)
+            View.renderElement(item);
         })
+        document.removeEventListener('DOMContentLoaded', this.prerenderTodos);
     },
 
-
+    deleteTodo(e){
+        if(!e.target.closest('.remove-todo')) return;
+        const todoItemID = e.target.closest(`[${'data-id'}]`).getAttribute('data-id');
+        const removeTodoItem = Model.deleteData(todoItemID);
+        View.removeTodoItemFromDOM(removeTodoItem);
+    },
 
     init(formSelector, blockSelector) {
         if(typeof formSelector !== 'string' || typeof blockSelector !== 'string') {
-            throw new Error('formSelector, blockSelector should be a string')
+            throw new Error('formSelector, blockSelector should be a string');
         }
 
-        const form = document.querySelector(formSelector)
-        if(!form) throw new Error('You should pass form element')
+        const form = document.querySelector(formSelector);
+        if(!form) throw new Error('You should pass form element');
 
 
-        const block = document.querySelector(blockSelector)
-        if(!block) throw new Error('You should pass block element')
+        const block = document.querySelector(blockSelector);
+        if(!block) throw new Error('You should pass block element');
 
-        console.log('#1 - Elements validated')
         this.form = form;
         this.todoItemsBlock = block;
-        View.setTodoItemsBlock(block)
-
-        console.log('#2 - Adding listeners')
-        this.initListeners()
+        View.setTodoItemsBlock(block);
+        this.initListeners();
     }
 }
