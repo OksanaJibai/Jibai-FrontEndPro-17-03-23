@@ -13,13 +13,13 @@ const Model = {
     // Will get data from storage by id
     getDataByID(id) {
         const data = this.getData();
-        return data.find(item => Number(item.id) === Number(id))
+        return data.find(item => Number(item.id) === Number(id));
     },
 
     // Will save data to storage
     postData(todoItem) {
         const data = this.getData();
-        const dataToSave = {...todoItem, id: this.currentId}
+        const dataToSave = {...todoItem, id: this.currentId};
         data.push(dataToSave);
         this.storage.setItem(this.dataKey, JSON.stringify(data));
         const savedElement = this.getDataByID(this.currentId);
@@ -27,12 +27,15 @@ const Model = {
         return savedElement;
     },
 
-    deleteData(id){
+    removeItem(id) {
         const data = this.getData();
-        const index = data.findIndex(item => item.id === id);
-        const removeItem = data.splice(index, 1);
-        this.storage.setItem(this.dataKey, JSON.stringify(data));
-        return removeItem[0];
+        const index = data.findIndex(item => Number(item.id) === Number(id));
+        if (index !== -1) {
+            data.splice(index, 1);
+            this.storage.setItem(this.dataKey, JSON.stringify(data));
+            return true;
+        }
+        return false;
     },
 
     init(storage = sessionStorage, storageKey) {
@@ -40,7 +43,7 @@ const Model = {
         this.storage = storage;
 
         const savedData = this.getData();
-        if(!savedData.length) return;
+        if (!savedData.length) return;
         this.currentId = Number(savedData.at(-1).id) + 1;
-    }
+    },
 }

@@ -8,7 +8,6 @@ const Controller = {
         this.form.addEventListener('submit', this.formHandler.bind(this));
         this.todoItemsBlock.addEventListener('click', this.deleteTodo.bind(this));
         window.addEventListener('DOMContentLoaded', this.prerenderTodos.bind(this));
-
     },
 
     formHandler(e) {
@@ -18,13 +17,12 @@ const Controller = {
         const data = {};
         this.form.querySelectorAll('input, textarea, select')
             .forEach(({name, value}) => {
-                data[name] = value
+                data[name] = value;
             })
 
         const savedData = Model.postData(data);
         e.target.reset();
         View.renderElement(savedData);
-
     },
 
     prerenderTodos() {
@@ -37,28 +35,31 @@ const Controller = {
         document.removeEventListener('DOMContentLoaded', this.prerenderTodos);
     },
 
-    deleteTodo(e){
-        if(!e.target.closest('.remove-todo')) return;
-        const todoItemID = e.target.closest(`[${'data-id'}]`).getAttribute('data-id');
-        const removeTodoItem = Model.deleteData(todoItemID);
-        View.removeTodoItemFromDOM(removeTodoItem);
+    deleteTodo(event){
+        if(!event.target.closest('.remove-todo'))return;
+        const todoItem = Number(event.target.closest(`[${'data-id'}]`).getAttribute('data-id'));
+        Model.removeItem(todoItem);
+        View.removeTodoItemFromDOM(todoItem);
     },
 
     init(formSelector, blockSelector) {
         if(typeof formSelector !== 'string' || typeof blockSelector !== 'string') {
-            throw new Error('formSelector, blockSelector should be a string');
+            throw new Error('formSelector, blockSelector should be a string')
         }
 
-        const form = document.querySelector(formSelector);
-        if(!form) throw new Error('You should pass form element');
+        const form = document.querySelector(formSelector)
+        if(!form) throw new Error('You should pass form element')
 
 
-        const block = document.querySelector(blockSelector);
-        if(!block) throw new Error('You should pass block element');
+        const block = document.querySelector(blockSelector)
+        if(!block) throw new Error('You should pass block element')
+
 
         this.form = form;
         this.todoItemsBlock = block;
         View.setTodoItemsBlock(block);
+
+
         this.initListeners();
     }
 }

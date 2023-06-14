@@ -4,16 +4,15 @@ const View = {
     todoItemsBlock: null,
 
     renderElement(todoItemData) {
-        if(!todoItemData) throw new Error('')
-        this.todoItemsBlock.prepend(
-            this.createTodoItemTemplate(todoItemData)
-        )
+        if(!todoItemData) throw new Error('###');
+        this.todoItemsBlock.prepend(this.createTodoItemTemplate(todoItemData));
     },
 
     createTodoItemTemplate({title, description, id}) {
         const el = document.createElement('div');
         el.className = 'col-4';
         el.setAttribute('data-id', id);
+
         el.innerHTML = `<div class="taskWrapper">
                             <div class="taskHeading">${title}</div>
                             <div class="taskDescription">${description}</div>
@@ -25,14 +24,16 @@ const View = {
         return el;
     },
 
-    //Gave permission to container from DOM
     setTodoItemsBlock(domEl) {
         if (!(domEl instanceof HTMLElement)) throw new Error('TodoItemsBlock should be a DOM element');
-        this.todoItemsBlock = domEl
+        this.todoItemsBlock = domEl;
     },
 
-    removeTodoItemFromDOM({id}){
-        this.todoItemsBlock.querySelector(`[${'data-id'} = '${id}']`).remove();
+    removeTodoItemFromDOM(id){
+        const index = this.todoItemsBlock.querySelector(`[${'data-id'} = '${id}']`);
+        if(index) {
+            index.remove();
+        }
     },
 
     init(createTodoItemTemplate) {
