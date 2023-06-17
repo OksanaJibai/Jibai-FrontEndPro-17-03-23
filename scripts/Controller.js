@@ -21,7 +21,6 @@ const Controller = {
             })
 
         const savedData = Model.postData(data);
-        e.target.reset();
         View.renderElement(savedData);
     },
 

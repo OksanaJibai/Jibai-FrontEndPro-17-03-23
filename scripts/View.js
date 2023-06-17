@@ -6,6 +6,7 @@ const View = {
     renderElement(todoItemData) {
         if(!todoItemData) throw new Error('###');
         this.todoItemsBlock.prepend(this.createTodoItemTemplate(todoItemData));
+        document.querySelector('form').reset();
     },
 
     createTodoItemTemplate({title, description, id}) {
