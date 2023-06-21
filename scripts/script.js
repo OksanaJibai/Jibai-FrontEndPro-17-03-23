@@ -19,18 +19,13 @@ function Student(name,lastName,yearBirth){
         if(this.visitingCount < 10){
             this.visiting[this.visitingCount] = true;
             this.visitingCount++;
-        }else{
-            return console.log('List of visits is full') ;
         }
-
     };
 
     Student.prototype.absent = function (){
         if(this.visitingCount < 10){
             this.visiting[this.visitingCount] = false;
             this.visitingCount++;
-        }else{
-            return console.log('List of visits is full');
         }
     };
 
@@ -39,11 +34,7 @@ function Student(name,lastName,yearBirth){
             if(grade >= 0 && grade <= 10){
                 this.marks[this.marksCount] = grade;
                 this.marksCount++;
-            }else{
-                return console.log('Mark should be from 0 to 10');
             }
-        }else{
-            return console.log('List of marks is full');
         }
     };
 
