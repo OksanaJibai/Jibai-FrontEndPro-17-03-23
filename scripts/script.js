@@ -5,6 +5,7 @@
     const student = { name: 'Иван Иванов' };
     const grades = { math: 90, fiz: 85, eng: 95 };
 
+
     const studentMarks = new WeakMap();
 
     function saveGrades(student, grades){
@@ -14,5 +15,10 @@
         return studentMarks.get(student);
     }
 
-    console.log(saveGrades(student, grades));
+    saveGrades(student, grades);
+    saveGrades(student, grades);
+    saveGrades(student, grades);
+
+    console.log(studentMarks);
+
 })()
