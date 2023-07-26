@@ -70,10 +70,13 @@ class PhoneBook {
         // callController.startCall(phone)
         const { phone } = this.contacts.find(({id}) => Number(userId) === +id);
         callController.startCall(phone);
-        Call.onStateChange((value)=>{
+        Call.onStateChange((value) => {
             const btn = document.querySelectorAll('.btn-success');
-            if(value === Call.callStates.reject || value === Call.callStates.disconnect) return;
-            btn.forEach(btn => btn.setAttribute('disabled', ''));
+            if(value === Call.callStates.inProgress || value === Call.callStates.connect){
+                btn.forEach(btn => btn.setAttribute('disabled', ''));
+            }else if(value === Call.callStates.reject || value === Call.callStates.disconnect) {
+                btn.forEach(btn => btn.removeAttribute('disabled'));
+            }
         })
     }
 
