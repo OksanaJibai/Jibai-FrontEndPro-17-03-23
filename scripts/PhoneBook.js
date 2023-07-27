@@ -7,6 +7,7 @@ class PhoneBook {
     list = document.querySelector('.contacts__list .list-group');
     searchInput = document.querySelector('#contacts-search');
 
+
     constructor(users) {
         this.#fillContacts(users);
         this.setEvents();
@@ -36,10 +37,9 @@ class PhoneBook {
 
         this.list.append(this.renderUsers(this.contacts.at(-1)));
         return this.contacts.at(-1);
-
     }
 
-    removeContact(id) {
+    #removeContact(id) {
         // will remove contact
 
         const removeContact = this.contacts.splice(
@@ -49,37 +49,42 @@ class PhoneBook {
            return removeContact;
     }
 
-    searchContacts = (e) => {
+    #searchContacts = (e) => {
         // will search contacts by name on each input evt
         // Use #searchedContacts field
 
-        const {value} = e.target;
-        const searchQuery = value.toLowerCase();
-        this.#contacts.forEach(contact => {
+        const searchQuery = e.target.value.toLowerCase();
+        this.contacts.forEach(contact => {
             let findName = contact.name.toLowerCase();
             if (findName.includes(searchQuery)) {
                 this.#searchedContacts.push(findName);
-
             }
         })
-        return this.#searchedContacts;
+        if(this.#searchedContacts === []) {
+            const error = document.createElement('div');
+            error.textContent = 'Sorry, no items found';
+            this.list.append(error);
+        }
+        this.renderUsers(this.#searchedContacts);
     }
 
-    call(userId) {
+    #call(userId) {
         // will search user in #contacts field by id
         // callController.startCall(phone)
         const { phone } = this.contacts.find(({id}) => Number(userId) === +id);
-        callController.startCall(phone);
-        Call.onStateChange((value) => {
-            const btn = document.querySelectorAll('.btn-success');
-            if(value === Call.callStates.inProgress || value === Call.callStates.connect){
-                btn.forEach(btn => btn.setAttribute('disabled', ''));
-            }else if(value === Call.callStates.reject || value === Call.callStates.disconnect) {
+
+        Call.onStateChange((state) => {
+            const btn = document.querySelectorAll('.call-btn');
+            if(state === Call.callStates.inProgress || state === Call.callStates.connect){
+                btn.forEach(btn => {
+                    btn.setAttribute('disabled', '');
+                });
+            }else if(state === Call.callStates.reject || state === Call.callStates.disconnect) {
                 btn.forEach(btn => btn.removeAttribute('disabled'));
             }
         })
+        callController.startCall(phone);
     }
-
     renderUsers = ({id, name}) => {
         const wrapper = document.createElement('div');
         wrapper.className = 'list-group-item d-flex justify-content-between align-items-center data-user-id =`${user.id}`';
@@ -87,28 +92,17 @@ class PhoneBook {
 
         wrapper.innerHTML = ` <span class="contacts__contact">${name}</span>
               <div>
-                <button type="button" ${this.#callBtnAttr} class="btn btn-success">
+                <button type="button" ${this.#callBtnAttr} class="btn btn-success call-btn">
                   <i class="bi bi-telephone"></i>
                 </button>
 
-                <button type="button" ${this.#removeBtnAttr} class="btn btn-danger">
+                <button type="button" ${this.#removeBtnAttr} class="btn btn-danger remove-btn">
                   <i class="bi bi-trash"></i>
                 </button>
               </div>`;
 
         return wrapper;
     }
-
-    // createCallModal = (contactName) =>{
-    //     const call = document.querySelector('#modal');
-    //     call.style.display = 'block';
-    //     const callModalContent = call.querySelector('.modal__text');
-    //     callModalContent.textContent = `Calling ${contactName} ...`;
-    //     const myModal = new bootstrap.Modal(document.getElementById('myModal'), options);
-    // }
-
-
-
     static #getAttrValue(el, attrName) {
         return el.closest(`[${attrName}]`).getAttribute(attrName);
     }
@@ -116,7 +110,7 @@ class PhoneBook {
     setEvents() {
         // will set event to html elements for call and remove user
         this.list.addEventListener('click', this.clickHandler);
-        this.searchInput.addEventListener('input', this.searchContacts);
+        this.searchInput.addEventListener('input', this.#searchContacts);
     }
     clickHandler = (event) =>{
         event.stopPropagation();
@@ -124,13 +118,13 @@ class PhoneBook {
         const id = PhoneBook.#getAttrValue(el, this.#userIdAttr);
 
         if(el.closest(`[${this.#callBtnAttr}]`)){
-            this.call(id);
+            this.#call(id);
         }
         if(el.closest(`[${this.#removeBtnAttr}]`)){
-            this.removeContact(id);
+            this.#removeContact(id);
         }
     }
 }
 
-
 const phoneBook = new PhoneBook(users);
+console.log(phoneBook);
