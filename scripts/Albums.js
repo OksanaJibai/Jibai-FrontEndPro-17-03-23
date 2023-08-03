@@ -9,10 +9,14 @@ class Album {
         this.fillAlbums()
     }
     async fetchAlbums(){
-        const response = await fetch(this.#albumsLink);
-        const data = await response.json();
-        // console.log(data)
-        return data;
+        try{
+            const response = await fetch(this.#albumsLink);
+            const data = await response.json();
+            // console.log(data)
+            return data;
+        }catch (error){
+            console.error(error);
+        }
     }
 
     renderAlbum(data){
@@ -46,8 +50,11 @@ class Album {
 
     async clickHandler (event){
         if(event.target.nodeName === 'A'){
-
-            await pictures.fillPictures(event.target.dataset.id);
+            try{
+                await pictures.fillPictures(event.target.dataset.id);
+            }catch (e){
+                console.error(e);
+            }
         }
 
     }
