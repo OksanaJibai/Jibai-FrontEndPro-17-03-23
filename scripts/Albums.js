@@ -1,62 +1,47 @@
 class Album {
 
-    #albumsLink = 'https://jsonplaceholder.typicode.com/albums';
+    #albumLink = 'https://jsonplaceholder.typicode.com/albums';
     albumList = document.querySelector('.albums-list');
 
 
     constructor() {
         this.setEvents();
-        this.fillAlbums()
-    }
-    async fetchAlbums(){
-        try{
-            const response = await fetch(this.#albumsLink);
-            const data = await response.json();
-            // console.log(data)
-            return data;
-        }catch (error){
-            console.error(error);
-        }
-    }
-
-    renderAlbum(data){
-
-        const wrapper = document.createElement('div');
-        wrapper.className = 'list-group-item';
-
-        data.forEach(album => {
-            const albumItem = document.createElement('a');
-            albumItem.className = 'list-group-item list-group-item-action';
-            albumItem.href = '/Pictures.html';
-            albumItem.dataset.id = album.id;
-            albumItem.textContent = album.title;
-            wrapper.appendChild(albumItem);
-
-        })
-        return wrapper;
-    }
-    async fillAlbums(){
-        await this.fetchAlbums()
-            .then(albums => {
-                this.albumList.append(this.renderAlbum(albums));
+        fetch(this.#albumLink)
+            .then(promise => promise.json())
+            .then(value =>{
+                value.forEach(album =>{
+                    this.albumList.append(this.renderAlbum(album));
+                })
             })
-            .catch(e => console.error(e));
+            .catch(error => console.error(error));
     }
 
+    renderAlbum({id, title}){
+
+        const album = document.createElement('div');
+        album.className = 'list-group-item';
+        album.setAttribute('data-album-id', id);
+
+        album.innerHTML = `<div class="card shadow-sm">
+                            <div class="card-body">
+                             <h5 class="card-title gallery--card-title">${title}</h5>
+                             <a href ="#" class="btn btn-outline-secondary">Go to photos</a>
+                            </div>
+                          </div>
+        `
+        return album;
+    }
 
     setEvents () {
         this.albumList.addEventListener('click', this.clickHandler);
     }
 
-    async clickHandler (event){
-        if(event.target.nodeName === 'A'){
-            try{
-                await pictures.fillPictures(event.target.dataset.id);
-            }catch (e){
-                console.error(e);
-            }
-        }
-
+     clickHandler = event =>{
+        event.stopPropagation();
+        if(event.target.nodeName !== 'A') return;
+        const currentAlbum = event.target.closest('div.list-group-item');
+        const currentAlbumId = +currentAlbum.getAttribute('data-album-id');
+        window.open(`photo.html?albumId=${currentAlbumId}`, '_blank');
     }
 }
 const albums = new Album();
