@@ -15,4 +15,9 @@ class Alert extends Component{
     }
 }
 
+Alert.defaultProps={
+    type: 'alert-primary',
+    text: 'This is a primary alert'
+}
+
 export default Alert;
