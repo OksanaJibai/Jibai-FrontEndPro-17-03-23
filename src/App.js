@@ -1,16 +1,19 @@
 import './App.css';
-import Progress from "./components/Progress";
+import ListGroup from "./components/ListGroup";
 
 function App() {
-  return (
-          <div className="container pt-3">
-              <Progress percentage={0}/>
-              <Progress percentage={18}/>
-              <Progress percentage={40}/>
-              <Progress percentage={68}/>
-              <Progress percentage={99}/>
-          </div>
-  );
+
+    const items = [
+        {id : 1, name: <p>one</p>},
+        {id : 2, name: <p>two</p>},
+        {id : 3, name: <p>tree</p>},
+        {id : 4, name: <p>four</p>},
+    ]
+    return (
+        <div className="App">
+            <ListGroup data={items}/>
+        </div>
+    );
 }
 
 export default App;
