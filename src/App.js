@@ -1,14 +1,15 @@
 import './App.css';
-import Progress from "./components/Progress";
+import BtnGroup from "./components/BtnGroup";
 
 function App() {
+
+    const buttonsData =[
+        {"id" : 1, "buttonText" : 'left'},
+        {"id" : 2, "buttonText" : 'right'}
+    ];
   return (
           <div className="container pt-3">
-              <Progress percentage={0}/>
-              <Progress percentage={18}/>
-              <Progress percentage={40}/>
-              <Progress percentage={68}/>
-              <Progress percentage={99}/>
+              <BtnGroup buttonsData={buttonsData}/>
           </div>
   );
 }
