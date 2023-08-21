@@ -1,15 +1,14 @@
 import './App.css';
-import Progress from "./components/Progress";
+import Alert from "./components/Alert";
+import {alertData} from "./data/data";
+
 
 function App() {
   return (
-          <div className="container pt-3">
-              <Progress percentage={0}/>
-              <Progress percentage={18}/>
-              <Progress percentage={40}/>
-              <Progress percentage={68}/>
-              <Progress percentage={99}/>
-          </div>
+      <div className='container pt-5'>
+        {alertData.map(({type,text}) => < Alert key={type} type={type} text={text}/> )}
+      </div>
+
   );
 }
 
