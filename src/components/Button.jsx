@@ -8,14 +8,17 @@ class Button extends Component{
     }
 
     handleClick =(btn) =>{
-        this.setState({activeBtn : btn});
+        const {activeBtn} = this.state;
+        activeBtn === btn ?
+            this.setState({activeBtn : null}) : this.setState({activeBtn : btn});
     }
     render() {
-        const { buttonText} = this.props;
+        const {buttonText} = this.props;
         const {activeBtn} = this.state;
 
-        const buttonClass = classNames(['btn btn-primary',
-            activeBtn === buttonText ? 'active' : ""]);
+        const buttonClass = classNames('btn btn-primary',{
+            "active" : activeBtn === buttonText
+        });
 
         return(
             <button type="button" onClick={() => this.handleClick(buttonText)}
