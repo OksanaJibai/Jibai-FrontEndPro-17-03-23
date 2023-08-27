@@ -1,14 +1,11 @@
 import './App.css';
-import Progress from "./components/Progress";
+import Collapse from "./components/Collapse";
 
 function App() {
+    const text = 'Collapse me';
   return (
           <div className="container pt-3">
-              <Progress percentage={0}/>
-              <Progress percentage={18}/>
-              <Progress percentage={40}/>
-              <Progress percentage={68}/>
-              <Progress percentage={99}/>
+              <Collapse text={text} opened={false}/>
           </div>
   );
 }
