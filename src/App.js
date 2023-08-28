@@ -1,15 +1,62 @@
-import Progress from "./components/Progress";
+import {Component} from "react";
+import MyForm from "./components/MyForm";
+import Table from "./components/Table";
 
-function App() {
-  return (
-          <div className="container pt-3">
-              <Progress percentage={0}/>
-              <Progress percentage={18}/>
-              <Progress percentage={40}/>
-              <Progress percentage={68}/>
-              <Progress percentage={99}/>
-          </div>
-  );
+class App extends Component{
+    constructor(props) {
+        super(props);
+        this.state = {
+            email : '',
+            password : "",
+            address : "",
+            city : "",
+            country : '',
+            acceptRules : false,
+            submitted : false
+        }
+    }
+
+    handleChange = (event) => {
+        const target = event.target;
+
+        this.setState({[target.name]: target.value})
+    }
+
+    handleChecked = (event) =>{
+        this.setState(prevState =>{
+            return {
+                ...prevState, acceptRules : event.target.checked
+            }
+        })
+    }
+    handleSubmit = (event) => {
+        event.preventDefault();
+        if(!this.state.acceptRules) return
+        this.setState(prevState =>{
+            return {
+                ...prevState, submitted : !this.state.submitted
+            }
+        })
+    }
+
+    handleBackBtn = () => {
+        this.setState(prevState =>{
+            return{
+                ...prevState, submitted : !this.state.submitted
+            }
+        })
+    }
+    render(){
+        return (
+            <div className="container pt-3">
+                { this.state.submitted === false
+                    ? (<MyForm state={this.state} handelChange={this.handleChange} handelSubmit={this.handleSubmit} handleChecked={this.handleChecked}/>)
+                    : (<Table data={this.state} handleBackBtn={this.handleBackBtn}/>)
+                }
+            </div>
+        );
+    }
+
 }
 
 export default App;
