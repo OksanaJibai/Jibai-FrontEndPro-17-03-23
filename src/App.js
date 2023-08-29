@@ -47,14 +47,19 @@ class App extends Component{
         })
     }
     render(){
-        return (
-            <div className="container pt-3">
-                { this.state.submitted === false
-                    ? (<MyForm state={this.state} handelChange={this.handleChange} handelSubmit={this.handleSubmit} handleChecked={this.handleChecked}/>)
-                    : (<Table data={this.state} handleBackBtn={this.handleBackBtn}/>)
-                }
-            </div>
-        );
+        if(this.state.submitted === false){
+            return(
+                <div className="container pt-3">
+                    <MyForm state={this.state} handelChange={this.handleChange} handelSubmit={this.handleSubmit} handleChecked={this.handleChecked}/>
+                </div>
+            )
+        }else {
+            return (
+                <div className="container pt-3">
+                    <Table data={this.state} handleBackBtn={this.handleBackBtn}/>
+                </div>
+            )
+        }
     }
 
 }
