@@ -1,13 +1,14 @@
-import Progress from "./components/Progress";
+import Card from "./components/Card";
 
 function App() {
   return (
           <div className="container pt-3">
-              <Progress percentage={0}/>
-              <Progress percentage={18}/>
-              <Progress percentage={40}/>
-              <Progress percentage={68}/>
-              <Progress percentage={99}/>
+              <Card>
+                  <Card.Body>
+                      <Card.Title>Lorem ipsum.</Card.Title>
+                      <Card.Text>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, culpa distinctio dolorem error eum id laboriosam officiis, pariatur quidem quo quod similique sint suscipit voluptatum.</Card.Text>
+                  </Card.Body>
+              </Card>
           </div>
   );
 }
