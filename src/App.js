@@ -1,15 +1,26 @@
-import Progress from "./components/Progress";
+import MarkdownEditor from "./components/MarkdownEditor";
+import {Component} from "react";
 
-function App() {
-  return (
-          <div className="container pt-3">
-              <Progress percentage={0}/>
-              <Progress percentage={18}/>
-              <Progress percentage={40}/>
-              <Progress percentage={68}/>
-              <Progress percentage={99}/>
-          </div>
-  );
+class App extends Component{
+    constructor(props) {
+        super(props);
+        this.state = {
+            markdownContent : "",
+        };
+    }
+
+    handleContentChange = (content) =>{
+        this.setState({markdownContent : content});
+    }
+    render(){
+        const {markdownContent} = this.state;
+        return (
+            <div>
+                <MarkdownEditor onContentChange={this.handleContentChange} />
+                <div dangerouslySetInnerHTML={{__html: markdownContent}}/>
+            </div>
+        );
+    }
 }
 
 export default App;
