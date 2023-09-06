@@ -1,13 +1,12 @@
-import Progress from "./components/Progress";
+import React from "react";
+import Portal from "./components/Portal";
+
+
 
 function App() {
   return (
           <div className="container pt-3">
-              <Progress percentage={0}/>
-              <Progress percentage={18}/>
-              <Progress percentage={40}/>
-              <Progress percentage={68}/>
-              <Progress percentage={99}/>
+             <Portal/>
           </div>
   );
 }
