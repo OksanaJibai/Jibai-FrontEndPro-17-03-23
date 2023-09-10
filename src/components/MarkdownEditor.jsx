@@ -13,7 +13,9 @@ class MarkdownEditor extends Component{
         const {onContentChange} = this.props;
         this.editor = new Editor({
             el: this.editorRef.current,
-            hideModeSwitch: true
+            hideModeSwitch: true,
+            height: '500px',
+            previewStyle: 'vertical'
         });
 
         this.editor.addHook('change', () => {
@@ -23,6 +25,12 @@ class MarkdownEditor extends Component{
             }
         });
     };
+
+    componentWillUnmount() {
+        if(this.editor){
+            this.editor.destroy();
+        }
+    }
 
     render(){
         return <div ref={this.editorRef}/>

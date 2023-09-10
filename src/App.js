@@ -13,11 +13,9 @@ class App extends Component{
         this.setState({markdownContent : content});
     }
     render(){
-        const {markdownContent} = this.state;
         return (
             <div>
                 <MarkdownEditor onContentChange={this.handleContentChange} />
-                <div dangerouslySetInnerHTML={{__html: markdownContent}}/>
             </div>
         );
     }
