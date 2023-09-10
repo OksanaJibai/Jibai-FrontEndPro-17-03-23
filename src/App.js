@@ -1,13 +1,16 @@
-import Progress from "./components/Progress";
+import React, { useState } from 'react'
+import MarkdownEditor from "./components/MarkdownEditor";
 
 function App() {
+    const [markdownContent, setMarkdownContent] = useState('');
+
+    const handleContentChange = (content) => {
+        setMarkdownContent(content)
+    }
+
   return (
           <div className="container pt-3">
-              <Progress percentage={0}/>
-              <Progress percentage={18}/>
-              <Progress percentage={40}/>
-              <Progress percentage={68}/>
-              <Progress percentage={99}/>
+           <MarkdownEditor onContentChange={handleContentChange}/>
           </div>
   );
 }
