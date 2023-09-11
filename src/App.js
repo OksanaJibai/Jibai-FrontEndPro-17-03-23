@@ -1,16 +1,17 @@
 import React, { useState } from 'react'
 import MarkdownEditor from "./components/MarkdownEditor";
 
-function App() {
-    const [markdownContent, setMarkdownContent] = useState('');
+const App = () =>{
+    const [markdownContent, setMarkdownContent] = useState("");
 
     const handleContentChange = (content) => {
-        setMarkdownContent(content)
+        return setMarkdownContent(content)
     }
 
   return (
           <div className="container pt-3">
            <MarkdownEditor onContentChange={handleContentChange}/>
+              <div dangerouslySetInnerHTML={{__html : markdownContent}}/>
           </div>
   );
 }
