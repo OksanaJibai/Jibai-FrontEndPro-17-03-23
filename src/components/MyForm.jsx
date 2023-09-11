@@ -1,11 +1,25 @@
 import React, {Component} from "react";
 
 class MyForm extends Component{
+    constructor(props) {
+        super(props);
 
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handelChange = this.handelChange.bind(this);
+    }
+
+    handelChange = (event) => {
+        this.props.handelChange(event);
+    }
+    handleSubmit = (event) => {
+        event.preventDefault();
+        this.props.handelSubmit()
+    }
     render(){
-        const {state, handleSubmit, handleChange, handleChecked} = this.props;
+        const {state, handleChecked} = this.props;
         return (
-            <form name="myForm" >
+            <form name="myForm" onSubmit={this.handleSubmit}
+             >
                 <div className="col-md-6 mb-3">
                     <label htmlFor="email" className="col-form-label">Email</label>
                     <input type="email"
@@ -13,7 +27,7 @@ class MyForm extends Component{
                            className="form-control"
                            id="email"
                            placeholder="Email"
-                           onChange={handleChange}
+                           onChange={this.handelChange}
                            defaultValue={state.email}
                     />
                 </div>
@@ -24,7 +38,7 @@ class MyForm extends Component{
                            className="form-control"
                            id="password"
                            placeholder="Password"
-                           onChange={handleChange}
+                           onChange={this.handelChange}
                            defaultValue={state.password}
                     />
                 </div>
@@ -34,7 +48,7 @@ class MyForm extends Component{
                               name="address"
                               id="address"
                               placeholder="1234 Main St"
-                              onChange={handleChange}
+                              onChange={this.handelChange}
                               defaultValue={state.address} >
                 </textarea>
                 </div>
@@ -44,7 +58,7 @@ class MyForm extends Component{
                            className="form-control"
                            name="city"
                            id="city"
-                           onChange={handleChange}
+                           onChange={this.handelChange}
                            defaultValue={state.city}
                     />
                 </div>
@@ -53,7 +67,7 @@ class MyForm extends Component{
                     <select id="country"
                             name="country"
                             className="form-control"
-                            onChange={handleChange}
+                            onChange={this.handelChange}
                             defaultValue={state.country}
                     >
                         <option>Choose</option>
@@ -77,7 +91,7 @@ class MyForm extends Component{
                     </div>
                 </div>
 
-                <button type="submit" className="btn btn-primary" onSubmit={handleSubmit} >Sign in</button>
+                <button type="submit" className="btn btn-primary" >Sign in</button>
             </form>
     );
     }

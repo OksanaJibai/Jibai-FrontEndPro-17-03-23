@@ -14,12 +14,14 @@ class App extends Component{
             acceptRules : false,
             submitted : false
         }
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handelChange = this.handelChange.bind(this);
     }
 
-    handleChange = (event) => {
+    handelChange = (event) => {
         const target = event.target;
-
         this.setState({[target.name]: target.value})
+
     }
 
     handleChecked = (event) =>{
@@ -29,8 +31,8 @@ class App extends Component{
             }
         })
     }
-    handleSubmit = (event) => {
-        event.preventDefault();
+    handleSubmit = () => {
+
         if(!this.state.acceptRules) return
         this.setState(prevState =>{
             return {
@@ -41,8 +43,9 @@ class App extends Component{
 
     handleBackBtn = () => {
         this.setState(prevState =>{
+
             return{
-                ...prevState, submitted : !this.state.submitted
+                ...prevState, submitted : !prevState.submitted
             }
         })
     }
@@ -50,7 +53,7 @@ class App extends Component{
         if(this.state.submitted === false){
             return(
                 <div className="container pt-3">
-                    <MyForm state={this.state} handelChange={this.handleChange} handelSubmit={this.handleSubmit} handleChecked={this.handleChecked}/>
+                    <MyForm state={this.state} handelChange={this.handelChange} handelSubmit={this.handleSubmit} handleChecked={this.handleChecked}/>
                 </div>
             )
         }else {
